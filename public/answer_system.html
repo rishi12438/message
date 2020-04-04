@@ -1,0 +1,44 @@
+<html>
+<script
+           src="https://code.jquery.com/jquery-2.2.4.min.js"
+           integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+           crossorigin="anonymous"></script>
+
+<script src="https://cdn.auth0.com/js/lock/10.18.0/lock.min.js"></script>
+       <script src="https://js.pusher.com/4.0/pusher.min.js"></script>
+<script src="index.js"></script>
+<body> 
+<div id = "lc"> </div> 
+<script>
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+function getUrlParam(parameter, defaultvalue){
+    var urlparameter = defaultvalue;
+    if(window.location.href.indexOf(parameter) > -1){
+        urlparameter = getUrlVars()[parameter];
+        }
+    return urlparameter;
+}
+
+
+
+function myFunction(value){ 
+        var message = document.getElementById("reply"+value.toString()).value;
+        var message_id = document.getElementById("message_id"+value.toString()).value; 
+        $.post( "http://54.255.159.253:5000/reply_ans", { message_id: message_id, message: message, name: "ehd" , reciever_id: getUrlParam("user_id")} );
+
+location.reload();
+
+}
+
+
+
+
+</script> 
+</body> 
+</html>
